@@ -1,0 +1,13 @@
+<div>
+
+	<div class="dropdownBtn" (click)="dropdownClicked()">
+    Movie: {{selected?.title}}
+    <i class="fa fa-caret-down"></i>
+  </div>
+<div class="dropdown" *ngIf="clicked">
+    <a class="dropdownContent" (click)="movieSelected(movie)" *ngFor="let movie of movies">{{movie.title}}</a>
+</div>
+<div>
+  <a class="">clcllear</a>
+</div>
+</div>
