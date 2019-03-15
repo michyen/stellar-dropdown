@@ -1,13 +1,15 @@
-<div>
+<div class="parentContainer">
 
-	<div class="dropdownBtn" (click)="dropdownClicked()">
-    Movie: {{selected?.title}}
-    <i class="fa fa-caret-down"></i>
+  <div class="dropdownBtn" [ngClass]="containerExpanded()" (click)="dropdownClicked()">
+    <a>
+      Movie: {{selected?.title}}
+      <i class="fa fa-caret-down"></i>
+    </a>
   </div>
-<div class="dropdown" *ngIf="clicked">
+  <div class="dropdown" [@dropdownAnimation]="expanded ? 'end' : 'start'">
     <a class="dropdownContent" (click)="movieSelected(movie)" *ngFor="let movie of movies">{{movie.title}}</a>
-</div>
-<div>
-  <a class="">clcllear</a>
-</div>
+  </div>
+  <div class="clearBtn" *ngIf="selected" (click)="clearSelection()">
+    <a>Clear</a>
+  </div>
 </div>

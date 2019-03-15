@@ -1,9 +1,34 @@
-import { Component, Output, EventEmitter, ElementRef, HostListener } from '@angular/core';
+import { Component } from "@angular/core";
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition
+} from "@angular/animations";
 
 @Component({
-  selector: 'my-app',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "my-app",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"],
+  animations: [
+    trigger("dropdownAnimation", [
+      state(
+        "start",
+        style({
+          height: "0px"
+        })
+      ),
+      state(
+        "end",
+        style({
+          height: "150px"
+        })
+      ),
+      transition("start => end", animate(500)),
+      transition("end => start", animate("500ms ease-out"))
+    ])
+  ]
 })
 export class AppComponent {
   movies: any = [
@@ -16,15 +41,15 @@ export class AppComponent {
     { id: 2, title: "policy002" },
     { id: 3, title: "policy003" },
     { id: 4, title: "policy004" },
-    { id: 5, title: "policy005" },
+    { id: 5, title: "policy005" }
   ];
-  clicked: boolean = false;
+  expanded: boolean = false;
   selected: any;
 
-  constructor() { }
+  constructor() {}
 
   dropdownClicked() {
-    this.clicked = (!this.clicked);
+    this.expanded = !this.expanded;
   }
 
   movieSelected(movie) {
@@ -32,5 +57,15 @@ export class AppComponent {
     this.dropdownClicked();
   }
 
+  clearSelection() {
+    this.selected = null;
+  }
 
+  containerExpanded() {
+    if (this.expanded) {
+      return { dropShadow: true };
+    } else {
+      return { bottomRadius: true };
+    }
+  }
 }
