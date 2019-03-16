@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, HostListener, ElementRef } from "@angular/core";
 import {
   trigger,
   state,
@@ -28,6 +28,17 @@ import { MovieDBService } from "./movie-db.service";
   ]
 })
 export class AppComponent {
+  @HostListener("document:click", ["$event.target"])
+  public onClick(targetElement) {
+    const clickedInside = this._elementRef.nativeElement.contains(
+      targetElement
+    );
+    if (!clickedInside) {
+      // hide dropdown
+      this.expanded = false;
+    }
+  }
+
   movies: any;
   // movies: any = [
   //   { id: 0, title: "policy001" },
@@ -44,7 +55,10 @@ export class AppComponent {
   expanded: boolean = false;
   selected: any;
 
-  constructor(private movieDB: MovieDBService) {
+  constructor(
+    private movieDB: MovieDBService,
+    private _elementRef: ElementRef
+  ) {
     movieDB.getPopular().subscribe(result => (this.movies = result.results));
   }
 
