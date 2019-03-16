@@ -1,10 +1,7 @@
 <div class="parentContainer">
-
   <div class="dropdownBtn" [ngClass]="containerExpanded()" (click)="dropdownClicked()">
-    <a>
-      Movie: {{selected?.title}}
-      <i class="fa fa-caret-down"></i>
-    </a>
+    <a class="truncate">Movie: {{selected?.title}}</a>
+    <div class="fa fa-caret-up rightAlign" [@twistyAnimation]="expanded ? 'show' : 'hide'"></div>
   </div>
   <div class="dropdown" [@dropdownAnimation]="expanded ? 'end' : 'start'">
     <a class="dropdownContent" (click)="movieSelected(movie)" *ngFor="let movie of movies">{{movie.title}}</a>
