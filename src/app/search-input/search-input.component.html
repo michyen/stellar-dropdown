@@ -1,0 +1,9 @@
+<div class="searchInput">
+  <input type="text" placeholder="Movie:" [(ngModel)]="selected" (click)="show = true">
+  <div class="clearBtn" *ngIf="showClearBtn" (click)="clearSelection()">
+    <a>Clear</a>
+  </div>
+  <div class="dropdown" *ngIf="show">
+    <a class="dropdownContent" (click)="movieSelected(movie)" *ngFor="let movie of movies | filter: selected">{{movie.title}}</a>
+  </div>
+</div>

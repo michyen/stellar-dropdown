@@ -1,12 +1,5 @@
-<div class="parentContainer">
-  <div class="dropdownBtn" [ngClass]="containerExpanded()" (click)="dropdownClicked()">
-    <a class="truncate">Movie: {{selected?.title}}</a>
-    <div class="fa fa-caret-up rightAlign" [@twistyAnimation]="expanded ? 'show' : 'hide'"></div>
-  </div>
-  <div class="dropdown" [@dropdownAnimation]="expanded ? 'end' : 'start'">
-    <a class="dropdownContent" (click)="movieSelected(movie)" *ngFor="let movie of movies">{{movie.title}}</a>
-  </div>
-  <div class="clearBtn" *ngIf="selected" (click)="clearSelection()">
-    <a>Clear</a>
-  </div>
-</div>
+<nav>
+  <a routerLink="/dropdown" routerLinkActive="active">Dropdown Style</a>
+  <a routerLink="/search" routerLinkActive="active">Search Filter Style</a>
+</nav>
+<router-outlet></router-outlet>
