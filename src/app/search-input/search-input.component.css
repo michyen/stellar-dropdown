@@ -23,6 +23,19 @@
 
 }
 
+.dropdown {
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    background-color: white;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    height: 150px;
+}
+
 input {
     width: 350px;
 }
